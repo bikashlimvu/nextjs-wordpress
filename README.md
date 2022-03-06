@@ -1,5 +1,17 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Environment
+
+This project makes use of WPGraphQL to query WordPress with GraphQL. In order to make that request to the appropriate endpoint, we need to set a environment variable to let Next.js know where to request the site information from.
+
+Create a new file locally called .env.local and add the following:
+
+```bash
+WORDPRESS_GRAPHQL_ENDPOINT="[WPGraphQL Endpoint]"
+```
+
+Replace the contents of the variable with your WPGraphQL endpoint. By default, it should resemble ```[Your Host]/graphql```
+
 ## Getting Started
 
 First, run the development server:
