@@ -1,0 +1,33 @@
+$color-purple : blueviolet;
+
+.container {
+  padding: 0 2rem;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.products {
+  list-style: none;
+  padding: 0;
+  margin: 3em 0 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 3em;
+}
+
+.productTitle {
+  font-size: 1.4em;
+  margin: .4em 0 0;
+}
+
+.productPrice {
+  margin: .4em 0 0;
+}

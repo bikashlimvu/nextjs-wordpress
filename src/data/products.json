@@ -1,0 +1,62 @@
+[
+    {
+        "id": "pikachu",
+        "title": "Pikachu",
+        "price": "£109.99",
+        "image": "/images/pikachu.png"
+    },
+    {
+        "id": "bulbasaur",
+        "title": "Bulbasaur",
+        "price": "£109.99",
+        "image": "/images/bulbasaur.png"
+    },
+    {
+        "id": "charmander",
+        "title": "Charmander",
+        "price": "£109.99",
+        "image": "/images/charmander.png"
+    },
+    {
+        "id": "squirtle",
+        "title": "Squirtle",
+        "price": "£109.99",
+        "image": "/images/squirtle.png"
+    },
+    {
+        "id": "machop",
+        "title": "Machop",
+        "price": "£60",
+        "image": "/images/machop.png"
+    },
+    {
+        "id": "onix",
+        "title": "Onix",
+        "price": "£70",
+        "image": "/images/onix.png"
+    },
+    {
+        "id": "pidgey",
+        "title": "Pidgey",
+        "price": "49",
+        "image": "/images/pidgey.png"
+    },
+    {
+        "id": "psyduck",
+        "title": "Psyduck",
+        "price": "£55",
+        "image": "/images/psyduck.png"
+    },
+    {
+        "id": "rattata",
+        "title": "Rattata",
+        "price": "38",
+        "image": "/images/rattata.png"
+    },
+    {
+        "id": "snorlax",
+        "title": "Snorlax",
+        "price": "£72",
+        "image": "/images/snorlax.webp"
+    }
+]
