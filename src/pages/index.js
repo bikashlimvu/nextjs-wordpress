@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ApolloClient,
   InMemoryCache,
@@ -42,16 +43,20 @@ export default function Home({ products }) {
 
                 return (
                   <li key={slug}>
-                    <Image width={cardImage.mediaDetails.width} height={cardImage.mediaDetails.height} src={cardImage.mediaItemUrl} alt={cardImage.altText} />
-                    <h3 className={styles.productTitle}>
-                      {cardTitle}
-                    </h3>
-                    <p className={styles.productPrice}>
-                      £{cardPrice}
+                    <Link href={`/products/${slug}`}>
+                    <a>
+                      <Image width={cardImage.mediaDetails.width} height={cardImage.mediaDetails.height} src={cardImage.mediaItemUrl} alt={cardImage.altText} />
+                      <h3 className={styles.productTitle}>
+                        {cardTitle}
+                      </h3>
+                      <p className={styles.productPrice}>
+                        £{cardPrice}
+                        </p>
+                      <p>
+                        <Button>Add to Cart</Button>
                       </p>
-                    <p>
-                      <Button>Add to Cart</Button>
-                    </p>
+                    </a>
+                    </Link>
                   </li>
                 )
               })
@@ -76,14 +81,14 @@ export async function getStaticProps() {
   const response = await client.query({
     query: gql`
     query PokemonCards {
-      pokemons(first: 10) {
+      pokemons {
         nodes {
-          ...PokemonFields
+          ...AllPokemonFields
         }
       }
     }
     
-    fragment PokemonFields on Pokemon {
+    fragment AllPokemonFields on Pokemon {
       slug
       cardTitle
       cardDescription
