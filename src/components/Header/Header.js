@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FaShoppingCart } from 'react-icons/fa';
  
 import Container from '@components/Container';
@@ -9,7 +10,11 @@ const Header = () => {
         <header className={styles.header}>
             <Container className={styles.headerContainer}>
                 <p className={styles.headerTitle}>
-                    Pokemon Trading Cards
+                    <Link href="/">
+                        <a>
+                            Pokemon Trading Cards
+                        </a>
+                    </Link>
                 </p>
                 <p className={styles.headerCart}>
                     <FaShoppingCart />
