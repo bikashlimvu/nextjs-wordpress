@@ -1,3 +1,5 @@
+@import "@styles/util/__util";
+
 $color-purple : blueviolet;
 
 .container {
@@ -7,7 +9,7 @@ $color-purple : blueviolet;
 .products {
   list-style: none;
   padding: 0;
-  margin: 3em 0 0;
+  margin: 0;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -21,4 +23,19 @@ $color-purple : blueviolet;
 
 .productPrice {
   margin: .4em 0 0;
+}
+
+.productImage {
+  @extend %card-image;
+  transform: rotate(-1.5deg) scale(1) translateY(-1em);
+  transition:  transform .1s;
+
+  &:hover {
+    transform: rotate(0) scale(1.1) translateY(-1em);
+    transition:  transform .2s;
+  }
+
+  & > span {
+    display: block !important;
+  }
 }

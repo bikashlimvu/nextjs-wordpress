@@ -31,12 +31,12 @@ export default function Product({ product }) {
       </Head>
 
       <Container>
-        <h1>{ cardTitle }</h1>
         <div className={styles.productWrapper}>
           <div className={styles.productImage}>
           <Image width={cardImage.mediaDetails.width} height={cardImage.mediaDetails.height} src={cardImage.mediaItemUrl} alt={cardImage.altText} />
           </div>
           <div className={styles.productContent}>
+          <h1>{ cardTitle }</h1>
             <div dangerouslySetInnerHTML={{ __html: cardDescription }} />
             <p className={styles.productPrice}>
               £{cardPrice}

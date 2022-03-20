@@ -24,10 +24,10 @@ export default function Home({ products }) {
       </Head>
 
       <Container>
-        <h1>Pokemon Trading Cards</h1>
-        <h2>Available Cards</h2>
+        <h1 className="sr-only">Pokemon Trading Cards</h1>
+        <h2 className="sr-only">Available Cards</h2>
         <ul className={styles.products}>
-          {
+          { 
             products.map(product => {
               const {
                 slug,
@@ -41,7 +41,9 @@ export default function Home({ products }) {
                 <li key={slug}>
                   <Link href={`/products/${slug}`}>
                   <a>
-                    <Image width={cardImage.mediaDetails.width} height={cardImage.mediaDetails.height} src={cardImage.mediaItemUrl} alt={cardImage.altText} />
+                    <div className={styles.productImage}>
+                      <Image width={cardImage.mediaDetails.width} height={cardImage.mediaDetails.height} src={cardImage.mediaItemUrl} alt={cardImage.altText} />
+                    </div>
                     <h3 className={styles.productTitle}>
                       {cardTitle}
                     </h3>

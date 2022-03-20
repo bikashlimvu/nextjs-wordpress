@@ -1,3 +1,5 @@
+@import "@styles/util/__util";
+
 $color-purple : blueviolet;
 
 .productWrapper {
@@ -5,8 +7,20 @@ $color-purple : blueviolet;
 }
 
 .productImage {
+  @extend %card-image;
   width: 50%;
   margin-right: 2em;
+  transform: rotate(-2deg) scale(.9) translateY(-1em);
+  transition:  transform .1s;
+
+  &:hover {
+    transform: rotate(-3deg) scale(1) translateY(-1em);
+    transition:  transform .2s;
+  }
+
+  & > span {
+    display: block !important;
+  }
 }
 
 .productTitle {
