@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +16,18 @@ import styles from '@styles/Home.module.scss'
 
 // import products from '@data/products.json';
 
-export default function Home({ products }) {
+export default function Home({ products, pokemonTypes }) {
+  const [activePokemonType, setPokemonType] = useState();
+
+  let activeProducts = products;
+
+  if ( activePokemonType ) {
+    activeProducts = activeProducts.filter(({ pokemonTypes }) => {
+      const pokemonIds = pokemonTypes.map(({ slug }) => slug);
+      return pokemonIds.includes(activePokemonType);
+    })
+  }
+
   return (
     <Layout>
       <Head>
@@ -25,10 +37,38 @@ export default function Home({ products }) {
 
       <Container>
         <h1 className="sr-only">Pokemon Trading Cards</h1>
+        
+        <div className={styles.pokemonTypesList}>
+          <h2>Filter by Pokemon Types</h2>
+          <ul>
+            {
+              pokemonTypes.map(pokemonType => {
+                const isActive = pokemonType.slug == activePokemonType;
+                let pokemonTypeClassName;
+                if ( isActive ) {
+                  pokemonTypeClassName = styles.pokemonTypeIsActive;
+                }
+                return(
+                  <li key={pokemonType.id}>
+                    <Button className={pokemonTypeClassName} color="yellow" onClick={() => setPokemonType(pokemonType.slug)}>
+                      {pokemonType.name}
+                      </Button>
+                  </li>
+                )
+              })
+            }
+            <li>
+                <Button className={!activePokemonType && styles.pokemonTypeIsActive} color="yellow" onClick={() => setPokemonType(undefined)}>
+                  View All
+                  </Button>
+              </li>
+          </ul>
+        </div>
+
         <h2 className="sr-only">Available Cards</h2>
         <ul className={styles.products}>
           { 
-            products.map(product => {
+            activeProducts.map(product => {
               const {
                 slug,
                 cardTitle,
@@ -74,10 +114,19 @@ export async function getStaticProps() {
 
   const response = await client.query({
     query: gql`
-    query PokemonCards {
+    query PokemonCardsAndPokemonTypes {
       pokemons {
         nodes {
           ...AllPokemonFields
+        }
+      }
+      pokemonTypes {
+        edges {
+          node {
+            id
+            name
+            slug
+          }
         }
       }
     }
@@ -95,20 +144,33 @@ export async function getStaticProps() {
           width
         }
       }
+      pokemonTypes {
+        edges {
+          node {
+            id
+            name
+            slug
+          }
+        }
+      }
     }
     `
   });
 
   const products = response.data.pokemons.nodes.map(( node ) => {
     const data = {
-      ...node
+      ...node,
+      pokemonTypes: node.pokemonTypes.edges.map(({ node }) => node)
     }
     return data;
   });
 
+  const pokemonTypes = response.data.pokemonTypes.edges.map(({ node }) => node);
+
   return { 
     props: {
-      products
+      products,
+      pokemonTypes
     }
   }
 }
